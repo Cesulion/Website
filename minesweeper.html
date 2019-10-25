@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Minesweeper</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="minesweeperstyle.css?v=1.0">
+</head>
+<script type="text/javascript">
+var gameVar;
+var lignesVar;
+var colonnesVar;
+var bombesVar;
+
+    function randomIntFromInterval(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min); // min and max included
+  }
+    function uncoverCell()
+    {
+      var cellPosVar = this.id;
+        if(this.innerHTML=="<p>bombed</p>")
+        {
+            this.setAttribute('class', 'uncoveredbomb')
+            alert("Perdu !");
+            for(var j=1; j<=colonnesVar; j++)
+            {
+                for (var i=1; i<=lignesVar; i++)
+                {
+                    if(document.getElementById("x"+i+"y"+j)!= null && document.getElementById("x"+i+"y"+j).innerHTML == "<p>bombed</p>")
+                    {
+                      document.getElementById("x"+i+"y"+j).setAttribute('class', 'uncoveredbomb');
+                    }
+                }
+            }
+
+        }
+        else if(this.innerHTML=="uncovered")
+        {
+            alert("Cellule déjà découverte");
+        }
+        else
+        {
+            this.setAttribute('class', 'uncoveredcell');
+            if(checkForWin())
+            {
+              alert("Gagné !");
+              return;
+            }
+            var closemines = 0;
+            var cellincheck;
+            var storedx;
+            var storedy;
+
+            //Recherche de la case en cours dans la grille
+            for(var j=1; j<=colonnesVar; j++)
+            {
+                for (var i=1; i<=lignesVar; i++)
+                {
+                  cellincheck="x"+i+"y"+j;
+                  if(cellincheck==this.id)
+                  {
+                    console.log("cellule trouvée");
+                    console.log(cellincheck);
+                    storedx=i;
+                    storedy=j;
+                    //console.log('x'+(i+1)+'y'+j);
+                  }
+                }
+            }
+
+            clearUnmined(storedx, storedy);
+        }
+    }
+
+    function clearUnmined(x, y)
+    {
+      var closemines=0;
+      for(var i=y-1; i<y+2; i++){
+        for(var j=x-1;j<x+2;j++){
+          if(document.getElementById("x"+j+"y"+i) != null && document.getElementById('x'+j+'y'+i).innerHTML == "<p>bombed</p>")
+          {
+            closemines++;
+          }
+        }
+      }
+      document.getElementById("x"+x+"y"+y).setAttribute('class', 'uncoveredcell');
+      document.getElementById("x"+x+"y"+y).innerHTML="<p>"+closemines+"</p>";
+      if (closemines == 0)
+      {
+        if(document.getElementById("x"+x+"y"+(y-1))!= null && document.getElementById("x"+x+"y"+(y-1)).className != "uncoveredcell")
+        {
+          clearUnmined(x, y - 1);
+        }
+        if(document.getElementById("x"+x+"y"+(y+1))!= null && document.getElementById("x"+x+"y"+(y+1)).className != "uncoveredcell")
+        {
+          clearUnmined(x, y + 1);
+        }
+        if(document.getElementById("x"+(x+1)+"y"+y)!= null && document.getElementById("x"+(x+1)+"y"+y).className != "uncoveredcell")
+        {
+          clearUnmined(x+1, y);
+        }
+        if(document.getElementById("x"+(x-1)+"y"+y)!= null && document.getElementById("x"+(x-1)+"y"+y).className != "uncoveredcell")
+        {
+          clearUnmined(x-1, y);
+        }
+      }
+      else
+      {
+        return;
+      }
+    }
+    function checkForWin()
+    {
+      var gamewon=true;
+      for(var j=1; j<=colonnesVar; j++)
+      {
+          for (var i=1; i<=lignesVar; i++)
+          {
+            if(document.getElementById("x"+i+"y"+j).className == "cell")
+            {
+              gamewon=false;
+            }
+          }
+      }
+      return gamewon;
+    }
+    function confirmRules()
+    {
+        gameVar = document.getElementById("game");
+        gameVar.innerHTML="";
+        lignesVar = document.getElementById("nblignes").value;
+        colonnesVar = document.getElementById("nbcolonnes").value;
+        bombesVar = document.getElementById("nbbombes").value;
+        //Creation de la grille
+        for(var j=1; j<=colonnesVar; j++)
+        {
+            var rowVar = document.createElement('div');
+            rowVar.setAttribute('class', 'row');
+            rowVar.setAttribute('id', 'row'+j);
+            document.getElementById('game').appendChild(rowVar);
+            for (var i=1; i<=lignesVar; i++)
+            {
+                var cellVar = document.createElement('div');
+                cellVar.setAttribute('class', 'cell');
+                cellVar.setAttribute('id', 'x'+i+'y'+j);
+                cellVar.onclick=uncoverCell;
+                rowVar.appendChild(cellVar);
+            }
+        }
+        //Placement des bombes
+        while(bombesVar>0)
+        {
+            var rngrowVar = randomIntFromInterval(1, lignesVar);
+            var rngcolVar = randomIntFromInterval(1, colonnesVar);
+            var selectedVar = document.getElementById('x'+rngrowVar+'y'+rngcolVar);
+            if(selectedVar.innerHTML!="<p>bombed</p>")
+            {
+                console.log(bombesVar);
+                selectedVar.innerHTML="<p>bombed</p>";
+                bombesVar--;
+            }
+        }
+    }
+
+</script>
+<body>
+    <h1>Le démineur</h1>
+    <form method="post" onsubmit="confirmRules();" target="_blank">
+        Lignes : <input id="nblignes" type="number" name="nblignes" required><br><br>
+        Colonnes :<input id="nbcolonnes" type="number" name="nbcolonnes" required><br><br>
+        Bombes : <input id="nbbombes" type="number" name="nbbombes" required><br><br>
+        <input type="submit" name="nsec" value="Confirmer"><br><br>
+    </form>
+    <div id="game">
+    </div>
+
+</body>
+</html>

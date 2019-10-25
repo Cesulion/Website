@@ -1,0 +1,497 @@
+html {
+	height: 100%
+}
+body{
+	margin-top: auto;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background: white;	
+
+
+}
+
+
+body header {
+	text-align: center;
+	background: white;	
+
+	
+}
+header {
+	background-color: white;
+	text-align: center;
+}
+header img {
+
+}
+body header nav ul {
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+
+
+}
+body nav {
+	margin-bottom: 1%;
+	border-top: 4px solid black;
+	border-bottom: 4px solid black;
+}
+
+
+
+body header nav li{
+	overflow: hidden;
+	text-align: center;
+	display: inline-block;
+
+
+}
+
+body header nav ul li a{
+
+	display: inline-block;
+	width:100px;
+	margin-left: 25px;
+	color:black;
+	font-size: 30px; 
+	text-decoration:none;
+	font-weight: bold;
+}
+body header nav ul li a:hover{
+	/*filter: blur(1px);*/
+	background: black;
+	color: white;
+}
+body header nav ul li a:hover{
+}
+body header nav ul li a:active{
+	border-bottom: 2px white;
+}
+
+#bonfire
+{
+	margin-left: 10%;
+	margin-right: 10%;
+
+	width: 80%;
+	background-color: white;
+}
+
+
+
+/*-------------------- MODE JOUR/NUIT */
+
+#stylebutton{
+	display: none;
+}
+#stylebuttontrue{
+	position: absolute;
+	right: 10px;
+}
+
+#stylebutton:checked ~ div {
+	background-color: black;
+}
+#stylebutton:checked ~ div > div {
+	background-color: white;
+	color:black;
+}
+#stylebutton:checked ~ div > header nav {
+	color: white;
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+	background-color: black	;
+}
+#stylebutton:checked ~ div > header nav li a{
+	color: white;
+
+	background-color: black	;
+}
+
+#stylebutton:checked ~ div > h1 {
+	color: white;
+}
+
+#stylebutton:checked ~ div > #mainPart > h1 {
+	border-bottom: 2px solid black;
+}
+
+#stylebutton:checked ~ div > #leftPart > h3 {
+	border-top: 2px solid black;
+}
+
+#stylebutton:checked ~ div > #leftPart, #stylebutton:checked ~ div > #mainPart{
+	box-shadow: 10px 5px 5px white;
+}
+#stylebutton:checked ~ div > header nav li a:hover{
+	color: black;
+
+	background-color: white	;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------- Accueil */
+
+.gallerie {
+	display: inline-block;
+	position: absolute;
+
+}
+.imagefiltree {
+	position: absolute;
+
+}
+
+.filtre {
+	background-color: black;
+	display: none;
+	height: 300px;
+	position: absolute;
+	width: 300px;
+	z-index:2;
+}
+.filtre p {
+	color: white;
+	font-weight: bold;
+	z-index: 5;
+	padding-top: 40%;
+}
+.imagefiltree:hover + .filtre{
+	display: block;
+	opacity: 0.5;
+}
+.imagefiltree:hover + .filtre p{
+	opacity: 1;
+	color: white;
+}
+
+#gallerie1 {
+	left: 8%;
+}
+#gallerie2 {
+	left: 28%;
+}
+#gallerie3 {
+	left: 48%;
+}
+#gallerie4 {
+	left: 68%;
+}
+
+
+
+
+
+ /*--------- CV */
+.part{
+	background-color: black;
+	color: white;
+	box-shadow: 10px 5px 5px black;
+}
+
+#leftPart {
+	margin-left: 10%;
+	float: left;
+	width: 25%;
+	height: 80%;
+}
+#mainPart {
+	margin-left: 40%;
+	width: 50%;
+	height: 80%
+}
+
+#mainPart h1{
+	margin-bottom: 2%;
+	border-bottom: 2px solid white;
+}
+
+#mainPart h2 ~ p{
+	font-style: italic;
+}
+
+
+#leftPart h2{
+	font-style:  italic;
+}
+
+#leftPart li {
+	list-style: square;
+}
+
+.part h3{
+	border-top: 2px solid white;
+	margin-top: 10px;
+}
+
+/*--------- Carte retournante */
+.flip-card {
+  background-color: transparent;
+  margin-left: 40%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: cadetblue;
+  background-size: 300px 300px;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
+/*-------- JEU 72 */
+
+
+.pastille {
+	
+	background-color: lightgrey;
+	display: inline-block;
+	overflow:auto;
+    float:left;
+}
+.pastille label {
+    float:left;
+    width:4.0em;
+}
+
+.pastille label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+}
+
+.pastille label input {
+    position:absolute;
+    top:-20px;
+}
+
+.pastille input:checked + span {
+    background-color:#911;
+    color:#fff;
+}
+.pastille:hover {
+	background-color: lightblue;
+}
+
+#result {
+	height: 50px;
+	width: 100px;
+	border: 2px solid black;
+	display: inline-block;
+}
+
+#pastille1 {
+
+}
+#pastille2 {
+	
+}
+#pastille3 {
+	
+}
+#pastille4 {
+	
+}
+#pastille5 {
+	
+}
+#pastille6 {
+	
+}
+
+.jeu72 {
+	display: inline-block;
+	margin-top: 5%;
+}
+
+/*-------------- Liste projets */
+
+#projetselector{
+	display: inline-block;
+}
+#tousprojets:checked ~ .content {
+	display: block;
+}
+#htmlprojets:checked ~ .html {
+	display: block;
+}
+#javascriptprojets:checked ~ .javascript {
+	display: block;
+}
+
+.html{
+	display:none;
+}
+.javascript{
+	display:none;
+}
+.content {
+	display:none;
+	margin-top: 2%;
+	width: 50%;
+	background: white;
+	border: solid 3px black;
+	border-radius: 25px;
+	box-shadow: 10px 5px 5px black;
+	overflow: hidden;
+	margin-left: 25%;
+	transition-duration: 0.5s;
+}
+.content img{
+	float: left;
+}
+.content h1 {
+	margin: 0;
+}
+.content a {
+	color: black;
+	text-decoration: none;
+}
+.content a:visited {
+	color: black;
+	text-decoration: none;
+
+}
+.content img {
+	height: 100px;
+	width: 100px;
+}
+.content:hover{
+	background-color: black;
+}
+.content:hover > a{
+	color: white;
+	font-weight: bolder;
+}
+/*--------- Chronometre */
+#chronometre{
+	margin-left: 30%;
+	padding: 20px;
+  	display: inline-block;
+ 	text-align: center;
+  	position: relative;
+ 	left: 50%;
+ 	top: 30%;
+ 	transform: translate(-50%, -50%);
+}
+.digith1{
+	animation-duration: 36000s;
+}
+.digith2{
+	animation-duration: 3600s;
+}
+.digitm1{
+	animation-duration: 600s;
+}
+.digitm2{
+	animation-duration: 60s;
+}
+.digits1{
+	animation-duration: 10s;
+}
+.digits2{
+	animation-duration: 1s;
+}
+
+.baton-haut, .baton-bas, .baton-milieu{
+	width: 8px;
+	height: 2px;
+}
+.baton-hg, .baton-bg, .baton-hd, .baton-bd{
+	height: 8px;
+	width: 2px;
+}
+/*-------- CARTES */
+
+
+.cardmarket {
+	height: 15%;
+	width: 30%;
+	margin-left: 40%;
+	margin-right: auto;
+	padding: 0;
+}
+
+.cardmarket ul{
+	list-style: none;
+	transform: none;
+}
+
+.card {
+	padding: 0;
+	position: absolute;
+	width: 200px;
+	height: 250px;
+
+}
+
+.card:hover{
+	transform:rotate(5deg);
+	transform:translateX(70px);
+	transition-duration: 0.5s;
+	transform-origin: bottom right;
+}
+
+#carte1
+{
+	margin-top: 0%;
+}
+#carte2
+{
+	margin-top: 1%;
+}
+#carte3
+{
+	margin-top: 2%;
+}
+#carte4
+{
+	margin-top: 3%;
+	background: linear-gradient(to bottom, rgba(214,214,214,1) 0%, rgba(255,26,0,1) 100%);
+}
+#carte5
+{
+	margin-top: 4%;
+	background: linear-gradient(to bottom, rgba(255,160,105,1) 0%, rgba(230,86,67,1) 100%);
+}
+
+
